@@ -37,11 +37,17 @@ import com.google.gson.JsonParser;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 import retrofit2.Call;
 
 public class VerifyPhoneActivity extends AppCompatActivity implements GetResult.MyListener {
@@ -87,9 +93,9 @@ public class VerifyPhoneActivity extends AppCompatActivity implements GetResult.
         mAuth = FirebaseAuth.getInstance();
         phonenumber = getIntent().getStringExtra("phone");
         phonecode = getIntent().getStringExtra("code");
-        sendVerificationCode(phonecode + phonenumber);
+       // sendVerificationCode(phonecode + phonenumber);
 
-
+        sendVerificationCodeToServer(phonecode + phonenumber);
 
 
         edOtp1.addTextChangedListener(new TextWatcher() {
@@ -253,9 +259,9 @@ public class VerifyPhoneActivity extends AppCompatActivity implements GetResult.
         }
     }
 
-    private void verifyCode(String code) {
-        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId, code);
-        signInWithCredential(credential);
+
+    private void verifyCode() {
+        createUser();
     }
 
     private void signInWithCredential(PhoneAuthCredential credential) {
@@ -293,6 +299,62 @@ public class VerifyPhoneActivity extends AppCompatActivity implements GetResult.
                 mCallBack
         );
     }
+    // Método para enviar la solicitud POST con OkHttp
+    private void sendVerificationCodeToServer(final String recipientNumber) {
+        OkHttpClient client = new OkHttpClient();
+
+        String url = "https://purificadora.aftconta.mx/otpverificacion.php"; // Reemplaza con tu URL
+
+        RequestBody requestBody = new FormBody.Builder()
+                .add("recipientNumber", recipientNumber) // Envía el código OTP al servidor
+                // Puedes agregar otros parámetros si es necesario
+                .build();
+
+        Request request = new Request.Builder()
+                .url(url)
+                .post(requestBody)
+                .build();
+
+
+
+
+        // Realiza la solicitud en un hilo en segundo plano
+        new Thread(() -> {
+            try {
+                Response response = client.newCall(request).execute();
+                if (response.isSuccessful()) {
+                    final String responseData = response.body().string();
+
+                    // Actualiza la interfaz de usuario en el hilo principal
+                    runOnUiThread(() -> handleServerResponse(responseData));
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }).start();
+    }
+
+    // Método para manejar la respuesta del servidor
+    private void handleServerResponse(String responseData) {
+        if (responseData.equals("200")) {
+
+
+            runOnUiThread(() -> {
+                Toast.makeText(VerifyPhoneActivity.this, "Código OTP verificado con éxito", Toast.LENGTH_SHORT).show();
+
+                // Aquí puedes realizar cualquier otra acción necesaria, como navegar a la siguiente actividad.
+            });
+        } else {
+
+
+            runOnUiThread(() -> {
+                Toast.makeText(VerifyPhoneActivity.this, "No se pudo verificar el código OTP. Inténtalo de nuevo.", Toast.LENGTH_SHORT).show();
+
+                // Si deseas, puedes tomar medidas adicionales, como permitir que el usuario reintente la verificación.
+            });
+        }
+    }
+
 
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks
             mCallBack = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
@@ -312,7 +374,7 @@ public class VerifyPhoneActivity extends AppCompatActivity implements GetResult.
                 edOtp4.setText("" + code.substring(3, 4));
                 edOtp5.setText("" + code.substring(4, 5));
                 edOtp6.setText("" + code.substring(5, 6));
-                verifyCode(code);
+               verifyCode();
             }
         }
         @Override
@@ -333,7 +395,8 @@ public class VerifyPhoneActivity extends AppCompatActivity implements GetResult.
         switch (view.getId()) {
             case R.id.btn_send:
                 if (validation()) {
-                    verifyCode(edOtp1.getText().toString() + "" + edOtp2.getText().toString() + "" + edOtp3.getText().toString() + "" + edOtp4.getText().toString() + "" + edOtp5.getText().toString() + "" + edOtp6.getText().toString());
+
+               verifyCode();
                 }
                 break;
             case R.id.btn_reenter:
