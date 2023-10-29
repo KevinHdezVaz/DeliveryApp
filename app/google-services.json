@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "848732098834",
+    "project_id": "purificadoraapp-41860",
+    "storage_bucket": "purificadoraapp-41860.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:848732098834:android:0a7679194c29b3ea5fe3cb",
+        "android_client_info": {
+          "package_name": "com.purificadora"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDBER_QasT2PMFiRNjQRiH1enKGqWUA6eM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
