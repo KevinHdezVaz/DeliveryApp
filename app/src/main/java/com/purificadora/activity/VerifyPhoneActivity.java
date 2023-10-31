@@ -19,6 +19,7 @@ import com.purificadora.R;
 import com.purificadora.model.LoginUser;
 import com.purificadora.model.RestResponse;
 import com.purificadora.model.User;
+import com.purificadora.notification.NotificationHelper;
 import com.purificadora.retrofit.APIClient;
 import com.purificadora.retrofit.GetResult;
 import com.purificadora.utils.CustPrograssbar;
@@ -38,6 +39,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
@@ -77,6 +79,7 @@ public class VerifyPhoneActivity extends AppCompatActivity implements GetResult.
     CustPrograssbar custPrograssbar;
     SessionManager sessionManager;
     User user;
+    String verificationCode = generateRandomVerificationCode();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,7 +98,11 @@ public class VerifyPhoneActivity extends AppCompatActivity implements GetResult.
         phonecode = getIntent().getStringExtra("code");
        // sendVerificationCode(phonecode + phonenumber);
 
-        sendVerificationCodeToServer(phonecode + phonenumber);
+
+        NotificationHelper.displayNotification(this, "Tu código de verificación es:",verificationCode );
+
+
+//        sendVerificationCodeToServer(phonecode + phonenumber);
 
 
         edOtp1.addTextChangedListener(new TextWatcher() {
@@ -239,13 +246,13 @@ public class VerifyPhoneActivity extends AppCompatActivity implements GetResult.
 
 
 
-        txtMob.setText("We have sent you an SMS on " + phonecode + " " + phonenumber + "\n with 6 digit verification code");
+        txtMob.setText("Enviamos un codigo de verificación al número " + phonecode + " " + phonenumber + " con 6 digitos.");
         try {
             new CountDownTimer(60000, 1000) {
                 @Override
                 public void onTick(long millisUntilFinished) {
                     long seconds = TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished);
-                    btnTimer.setText(seconds + " Secound Wait");
+                    btnTimer.setText(seconds + " segundos");
                 }
 
                 @Override
@@ -259,7 +266,14 @@ public class VerifyPhoneActivity extends AppCompatActivity implements GetResult.
         }
     }
 
-
+    private String generateRandomVerificationCode() {
+        // Genera un código de verificación aleatorio de 6 dígitos
+        Random random = new Random();
+        int min = 100000;
+        int max = 999999;
+        int verificationCode = random.nextInt(max - min + 1) + min;
+        return String.valueOf(verificationCode);
+    }
     private void verifyCode() {
         createUser();
     }
@@ -419,7 +433,9 @@ public class VerifyPhoneActivity extends AppCompatActivity implements GetResult.
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                sendVerificationCode(phonecode + phonenumber);
+           //     sendVerificationCode(phonecode + phonenumber);
+                NotificationHelper.displayNotification(this, "Tu código de verificación es:",verificationCode );
+
                 break;
             default:
                 break;

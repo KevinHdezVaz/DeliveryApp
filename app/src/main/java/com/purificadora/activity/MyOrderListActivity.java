@@ -113,7 +113,7 @@ public class MyOrderListActivity extends BaseActivity implements GetResult.MyLis
         custPrograssbar=new CustPrograssbar();
         sessionManager = new SessionManager(MyOrderListActivity.this);
         user = sessionManager.getUserDetails();
-        String[] descriptionData = {"Pending", "Ready to Ship", "Delivered"};
+        String[] descriptionData = {"Pendiente", "En Proceso", "Entregado"};
         timeView.setStateDescriptionData(descriptionData);
         timeView.checkStateCompleted(true);
         Intent intent = getIntent();

@@ -15,7 +15,9 @@
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
+
             android:layout_height="70dp"
+            android:backgroundTint="@color/colorPrimary"
             android:background="@drawable/rounded_actionbar"
             android:theme="@style/AppTheme.AppBarOverlay"
             app:elevation="0dp">
@@ -23,6 +25,7 @@
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
+                android:layout_marginRight="20dp"
                 android:layout_height="?attr/actionBarSize"
                 app:popupTheme="@style/AppTheme.PopupOverlay">
 
@@ -37,10 +40,11 @@
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:gravity="center|left"
+
                         android:maxLength="12"
                         android:padding="5dp"
                         android:text="BUTCHERY"
-                        android:textColor="@color/colorBalck"
+                        android:textColor="@color/colorWhite"
                         android:textSize="18dp"
                         android:textStyle="bold" />
 
@@ -87,6 +91,7 @@
                             android:id="@+id/img_cart"
                             android:layout_width="25dp"
                             android:layout_height="25dp"
+
                             android:layout_gravity="center"
                             android:src="@drawable/ic_cart" />
 

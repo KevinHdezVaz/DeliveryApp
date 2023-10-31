@@ -329,6 +329,11 @@ public class OrderSumrryFragment extends Fragment implements GetResult.MyListene
             jsonObject.put("coupon_id", sessionManager.getIntData(couponid));
             jsonObject.put("wal_amt", wallet);
             jsonObject.put("pname", jsonArray);
+
+            jsonObject.put("rid", "1"); // ID del repartidor
+            jsonObject.put("a_status", "1"); // Estado de la orden
+            jsonObject.put("r_status", "asignado prro"); // Estado de la orden
+
             JsonParser jsonParser = new JsonParser();
             Call<JsonObject> call = APIClient.getInterface().order((JsonObject) jsonParser.parse(jsonObject.toString()));
             GetResult getResult = new GetResult();

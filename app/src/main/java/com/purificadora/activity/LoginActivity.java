@@ -104,7 +104,7 @@ public class LoginActivity extends BaseActivity implements GetResult.MyListener 
             if (response.getResult().equals("true")) {
                 sessionManager.setUserDetails(response.getUser());
                 sessionManager.setBooleanData(login,true);
-        //        OneSignal.sendTag("userId", response.getUser().getId());
+             OneSignal.sendTag("userId", response.getUser().getId());
                 startActivity(new Intent(LoginActivity.this, HomeActivity.class));
                 finish();
             }

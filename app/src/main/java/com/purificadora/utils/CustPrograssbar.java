@@ -14,7 +14,7 @@ public class CustPrograssbar {
                 progressDialog = new ProgressDialog(context);
                 if (progressDialog != null && !progressDialog.isShowing()) {
 
-                    progressDialog.setMessage("Progress...");
+                    progressDialog.setMessage("Cargando información...");
                     progressDialog.show();
                 }
             }

@@ -19,7 +19,7 @@
             android:layout_width="130dp"
             android:layout_height="130dp"
             android:layout_gravity="center"
-            android:src="@drawable/firsticon" />
+            android:src="@drawable/redondoono" />
 
         <TextView
             android:layout_width="match_parent"
@@ -100,6 +100,7 @@
                 android:gravity="center|right"
                 android:padding="5dp"
                 android:layout_gravity="right"
+                android:visibility="gone"
                 android:textColor="@color/colorGrey1"
                 android:text="@string/forgot_password"
                 android:textSize="18sp" />
@@ -107,9 +108,10 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="52dp"
+
                 android:layout_gravity="center"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="100dp"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/rounded_green2"
                 android:elevation="10dp"
@@ -121,7 +123,9 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:background="@drawable/rounded_green2"
+                    android:backgroundTint="@color/colorPrimaryDark"
                     android:gravity="center"
+
                     android:text="@string/login"
                     android:textColor="@color/colorWhite"
                     android:textSize="18dp" />
@@ -165,7 +169,7 @@
                 android:layout_marginLeft="5dp"
                 android:background="@drawable/rounded_selectd"
                 android:gravity="center"
-                android:text="@string/sing"
+                android:text="Registrate"
                 android:textColor="@color/colorPrimary"
                 android:textStyle="bold" />
         </LinearLayout>

@@ -3,6 +3,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_gravity="right"
+    android:backgroundTint="@color/colorPrimaryDark"
     android:gravity="right"
     android:orientation="vertical">
 
@@ -10,7 +11,7 @@
     <LinearLayout
         android:id="@+id/lvl_addremove"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="75dp"
         android:layout_gravity="right"
 
         android:layout_marginLeft="2dp"
@@ -22,8 +23,8 @@
 
         <LinearLayout
             android:id="@+id/img_mins"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_gravity="center"
             android:layout_margin="3dp"
             android:gravity="center">
@@ -47,13 +48,13 @@
             android:minWidth="20dp"
             android:text="0"
             android:textColor="@color/colorBalck"
-            android:textSize="12dp"
+            android:textSize="16dp"
             android:textStyle="bold" />
 
         <LinearLayout
             android:id="@+id/img_plus"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_gravity="center"
             android:layout_margin="3dp"
 
@@ -72,7 +73,8 @@
     <LinearLayout
         android:id="@+id/lvl_addcart"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="75dp"
+        android:backgroundTint="@color/colorPrimaryDark"
         android:layout_gravity="right"
         android:background="@drawable/rounded_add"
 
@@ -83,9 +85,11 @@
             android:layout_height="wrap_content"
             android:layout_margin="3dp"
             android:gravity="center"
+            android:layout_gravity="center"
             android:padding="3dp"
+            android:textStyle="bold"
             android:text="@string/add"
-            android:textColor="@color/colorPrimary" />
+            android:textColor="@color/colorWhite" />
     </LinearLayout>
 
 </LinearLayout>

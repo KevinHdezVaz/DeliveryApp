@@ -1,11 +1,17 @@
 package com.purificadora.fragment;
 
+import static android.content.Context.LOCATION_SERVICE;
 import static com.purificadora.utils.Utiles.isRef;
 import static com.purificadora.utils.Utiles.isSelect;
 import static com.purificadora.utils.Utiles.seletAddress;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -82,6 +88,12 @@ public class AddressFragment extends Fragment implements GetResult.MyListener {
         LinearLayoutManager recyclerLayoutManager = new LinearLayoutManager(getActivity());
         recycleAddress.setLayoutManager(recyclerLayoutManager);
         getAddress();
+
+        checkGPSStatus();
+
+
+
+
         return view;
     }
 
@@ -90,7 +102,24 @@ public class AddressFragment extends Fragment implements GetResult.MyListener {
         isRef = false;
         startActivity(new Intent(getActivity(), AddressActivity.class));
     }
+    private void checkGPSStatus() {
+        LocationManager locationManager = (LocationManager) requireContext().getSystemService(Context.LOCATION_SERVICE);
+        if (locationManager != null && !locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            // El GPS está apagado, muestra un diálogo para redirigir al usuario a la configuración
+            new AlertDialog.Builder(requireContext())
+                    .setCancelable(false)
+                    .setMessage("El GPS está desactivado. Debe habilitarlo para mejorar la experiencia del usuario y recibir el producto en su hogar.")
+                    .setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                            startActivity(intent);
+                        }
+                    })
 
+                    .show();
+        }
+    }
     public class SelectAdrsAdapter extends
             RecyclerView.Adapter<SelectAdrsAdapter.ViewHolder> {
         private List<Address> addressList;

@@ -52,6 +52,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import retrofit2.Call;
+import uk.co.deanwild.materialshowcaseview.MaterialShowcaseSequence;
+import uk.co.deanwild.materialshowcaseview.MaterialShowcaseView;
+import uk.co.deanwild.materialshowcaseview.ShowcaseConfig;
 
 public class ItemDetailsActivity extends BaseActivity implements GetResult.MyListener, ReletedItemAdp.ItemClickListener {
     ProductItem productItem;
@@ -69,8 +72,7 @@ public class ItemDetailsActivity extends BaseActivity implements GetResult.MyLis
     TextView txtDesc;
     @BindView(R.id.lvl_pricelist)
     LinearLayout lvlPricelist;
-    @BindView(R.id.btn_addtocart)
-    TextView btnAddtocart;
+
     ArrayList<Price> priceslist;
     DatabaseHelper databaseHelper;
     SessionManager sessionManager;
@@ -117,6 +119,32 @@ public class ItemDetailsActivity extends BaseActivity implements GetResult.MyLis
         productItem = (ProductItem) getIntent().getParcelableExtra("MyClass");
         priceslist = getIntent().getParcelableArrayListExtra("MyList");
         recyclerReleted.setItemAnimator(new DefaultItemAnimator());
+
+
+
+
+
+
+
+        // sequence example
+        ShowcaseConfig config = new ShowcaseConfig();
+        config.setDelay(500); // half second between each showcase view
+
+        MaterialShowcaseSequence sequence = new MaterialShowcaseSequence(this, "SHOWCASE_ID");
+
+        sequence.setConfig(config);
+
+        sequence.addSequenceItem(txtTitle,
+                "Bienvenido, este es el nombre del producto a elegir.", "TOCA AQUI PARA CONTINUAR");
+        sequence.addSequenceItem(lvlPricelist,
+                "Desde este boton puede agregar que tantas unidades quiere ordenar.", "TOCA AQUI PARA CONTINUAR");
+
+        sequence.addSequenceItem(lvlCart,
+                "Ya que eligio cuantas unidades, la orden se agrega al carrito para continuar con su compra correctamente.", "TOCA AQUI PARA FINALIZAR");
+
+
+
+        sequence.start();
 
 
         onSetdata();
@@ -181,7 +209,7 @@ public class ItemDetailsActivity extends BaseActivity implements GetResult.MyLis
         }
     }
 
-    @OnClick({R.id.img_back, R.id.lvl_cart, R.id.btn_addtocart})
+    @OnClick({R.id.img_back, R.id.lvl_cart })
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.img_back:
@@ -190,9 +218,7 @@ public class ItemDetailsActivity extends BaseActivity implements GetResult.MyLis
             case R.id.lvl_cart:
                 fragment();
                 break;
-            case R.id.btn_addtocart:
-                finish();
-                break;
+
             default:
                 break;
         }

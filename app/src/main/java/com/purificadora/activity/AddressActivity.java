@@ -1,12 +1,17 @@
 package com.purificadora.activity;
 
+import static com.purificadora.activity.HomeActivity.custPrograssbar;
 import static com.purificadora.utils.Utiles.isRef;
 
 import android.Manifest;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -132,6 +137,7 @@ public class AddressActivity extends BaseActivity implements GetResult.MyListene
             }
         });
 
+
     }
 
     private void setcountaint(Address address) {
@@ -156,6 +162,8 @@ public class AddressActivity extends BaseActivity implements GetResult.MyListene
     @OnClick(R.id.txt_save)
     public void onViewClicked() {
         if (validation()) {
+            custPrograssbar.prograssCreate(this);
+
             if (address != null) {
                 updateUser(address.getId());
             } else {
@@ -279,7 +287,7 @@ public class AddressActivity extends BaseActivity implements GetResult.MyListene
 
                 googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 15));
             } else {
-                Toast.makeText(this, "No se pudo obtener la ubicación actual.", Toast.LENGTH_SHORT).show();
+            //    Toast.makeText(this, "No se pudo obtener la ubicación actual.", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -302,12 +310,15 @@ public class AddressActivity extends BaseActivity implements GetResult.MyListene
                     // Almacena las coordenadas en las variables globales
                     savedLatitude = latitude;
                     savedLongitude = longitude;
-                    Toast.makeText(AddressActivity.this,""+ latitude + longitude, Toast.LENGTH_SHORT).show();
+                  //  Toast.makeText(AddressActivity.this,""+ latitude + longitude, Toast.LENGTH_SHORT).show();
 
                     LatLng userLocation = new LatLng(latitude, longitude);
 
                     txtlongidtud.setText(""+longitude);
                     txtlatitud.setText(""+latitude);
+
+                    txtlongidtud.setVisibility(View.GONE);
+                    txtlatitud.setVisibility(View.GONE);
 
                     // Actualiza el mapa con la ubicación actual si es necesario
                     if (userLocationMarker == null) {
@@ -320,7 +331,7 @@ public class AddressActivity extends BaseActivity implements GetResult.MyListene
 
                     googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 15));
                 } else {
-                    Toast.makeText(AddressActivity.this, "No se pudo obtener la ubicación actual.", Toast.LENGTH_SHORT).show();
+                 //   Toast.makeText(AddressActivity.this, "No se pudo obtener la ubicación actual.", Toast.LENGTH_SHORT).show();
                 }
             });
         });

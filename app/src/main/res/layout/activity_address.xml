@@ -99,11 +99,12 @@
             <EditText
                 android:id="@+id/ed_landmark"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="100dp"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/rounded_editetext"
                 android:hint="@string/landmark"
-                  android:padding="10dp"
+               android:paddingBottom="35dp"
+                android:paddingLeft="10dp"
                 android:textColor="@color/colorGrey2" />
 
 
@@ -123,6 +124,7 @@
 
             <com.google.android.gms.maps.MapView
                 android:id="@+id/map_view"
+                android:layout_marginTop="20dp"
                 android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="250dp" />
@@ -133,8 +135,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Guardar Ubicación"
-                android:onClick="saveLocation"
-                />
+                 />
             <TextView
                 android:id="@+id/txtlongitud"
                 android:enabled="false"
@@ -173,6 +174,7 @@
                     android:text="@string/save"
                     android:textColor="@color/colorWhite"
                     android:textSize="18dp"
+                    android:backgroundTint="@color/colorPrimaryDark"
                     android:textStyle="bold" />
             </LinearLayout>
 

@@ -159,7 +159,7 @@ public class SubCategoryFragment extends Fragment implements GetResult.MyListene
         HomeActivity.getInstance().serchviewShow();
         HomeActivity.getInstance().setFrameMargin(60);
         if (user != null)
-            HomeActivity.getInstance().titleChange("Hello " + user.getName());
+            HomeActivity.getInstance().titleChange("Hola " + user.getName());
 
     }
 }

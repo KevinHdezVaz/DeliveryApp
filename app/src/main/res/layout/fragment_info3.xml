@@ -3,18 +3,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorWhite"
+    android:weightSum="2"
     android:orientation="vertical"
     tools:context="com.purificadora.fragment.Info1Fragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1.2">
+        android:layout_weight="1.5">
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_third_splash" />
+            android:layout_height="150dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:background="@drawable/bg_first_splash" />
 
 
 
@@ -24,7 +26,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
+        android:layout_weight="0.5"
 
         android:orientation="vertical">
 

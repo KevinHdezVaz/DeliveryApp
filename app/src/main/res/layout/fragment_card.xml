@@ -70,7 +70,7 @@
                 android:layout_alignParentLeft="true"
                 android:padding="10dp"
                 android:text="@string/total_item"
-                android:textColor="@color/colorBalck"
+                android:textColor="@color/colorWhite"
                 android:textSize="16dp"
                 android:textStyle="bold" />
 
@@ -86,7 +86,7 @@
                 android:layout_alignParentRight="true"
                 android:padding="10dp"
                 android:text="@string/totals"
-                android:textColor="@color/colorBalck"
+                android:textColor="@color/colorWhite"
                 android:textSize="16dp"
                 android:textStyle="bold" />
         </LinearLayout>

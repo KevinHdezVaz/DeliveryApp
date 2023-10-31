@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/coresans_cr_medium"
             android:gravity="center"
-            android:text="Enter OTP"
+            android:text="Ingresa el codigo"
             android:textColor="@color/colorGrey1"
             android:textSize="18dp"
             android:textStyle="bold" />
@@ -50,6 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
+            android:layout_marginHorizontal="20dp"
             android:fontFamily="@font/coresans_cr_medium"
             android:gravity="center"
             android:text=""
@@ -83,8 +84,8 @@
 
                     <EditText
                         android:id="@+id/ed_otp1"
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
                         android:layout_marginRight="5dp"
                         android:background="@drawable/border"
                         android:gravity="center"
@@ -94,8 +95,8 @@
 
                     <EditText
                         android:id="@+id/ed_otp2"
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
                         android:layout_marginRight="5dp"
                         android:background="@drawable/border"
                         android:gravity="center"
@@ -105,8 +106,8 @@
 
                     <EditText
                         android:id="@+id/ed_otp3"
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
                         android:layout_marginRight="5dp"
                         android:background="@drawable/border"
                         android:gravity="center"
@@ -116,8 +117,8 @@
 
                     <EditText
                         android:id="@+id/ed_otp4"
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
                         android:layout_marginRight="5dp"
                         android:background="@drawable/border"
                         android:gravity="center"
@@ -127,8 +128,8 @@
 
                     <EditText
                         android:id="@+id/ed_otp5"
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
                         android:layout_marginRight="5dp"
                         android:background="@drawable/border"
                         android:gravity="center"
@@ -138,8 +139,8 @@
 
                     <EditText
                         android:id="@+id/ed_otp6"
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
                         android:layout_marginRight="5dp"
                         android:background="@drawable/border"
                         android:gravity="center"
@@ -155,11 +156,12 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="30dp"
+                    android:backgroundTint="@color/colorPrimaryDark"
                     android:layout_marginRight="20dp"
                     android:background="@drawable/rounded_green2"
                     android:elevation="10dp"
                     android:gravity="center"
-                    android:text="Submit"
+                    android:text="REGISTRARSE"
                     android:textColor="@color/colorWhite" />
 
 
@@ -179,7 +181,7 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:padding="3dp"
-            android:text="Did not receive the code?"
+            android:text="¿No recibiste el codigo?"
             android:textColor="@color/colorGrey2" />
 
         <TextView
@@ -192,7 +194,7 @@
             android:elevation="10dp"
             android:gravity="center"
             android:visibility="gone"
-            android:text="Re-Send"
+            android:text="Reenviar"
             android:textColor="@color/colorPrimary" />
 
         <TextView

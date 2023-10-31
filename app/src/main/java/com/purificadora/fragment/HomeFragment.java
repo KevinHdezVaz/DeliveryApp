@@ -13,8 +13,11 @@ import static com.purificadora.utils.SessionManager.tax;
 import static com.purificadora.utils.SessionManager.tremcodition;
 import static com.purificadora.utils.Utiles.productItems;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -48,6 +51,7 @@ import com.purificadora.model.Flashsalelist;
 import com.purificadora.model.Home;
 import com.purificadora.model.ProductItem;
 import com.purificadora.model.User;
+import com.purificadora.notification.NotificationHelper;
 import com.purificadora.retrofit.APIClient;
 import com.purificadora.retrofit.GetResult;
 import com.purificadora.utils.AutoScrollViewPager;
@@ -65,6 +69,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -338,7 +343,7 @@ public class HomeFragment extends Fragment implements CategoryAdp.RecyclerTouchL
         HomeActivity.getInstance().setFrameMargin(60);
         HomeActivity.getInstance().serchviewShow();
         if (user != null)
-            HomeActivity.getInstance().titleChange("Hello " + user.getName());
+            HomeActivity.getInstance().titleChange("Hola " + user.getName());
 
         if (dynamicDataList != null) {
             setJoinPlayrList(lvlSelected, dynamicDataList);
@@ -405,7 +410,7 @@ public class HomeFragment extends Fragment implements CategoryAdp.RecyclerTouchL
                 sessionManager.setIntData(oMin, home.getResultHome().getMainData().getoMin());
                 sessionManager.setStringData(razKey, home.getResultHome().getMainData().getRazKey());
                 sessionManager.setStringData(tax, home.getResultHome().getMainData().getTax());
-                HomeActivity.getInstance().setTxtWallet(home.getResultHome().getWallet() + "");
+            //    HomeActivity.getInstance().setTxtWallet(home.getResultHome().getWallet() + "");
                 productItems = home.getResultHome().getProductItems();
                 dynamicDataList = home.getResultHome().getDynamicData();
                 setJoinPlayrList(lvlSelected, dynamicDataList);

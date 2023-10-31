@@ -291,8 +291,8 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:paddingBottom="3dp"
                             android:text="@string/my_current_address" />
 
@@ -332,6 +332,7 @@
                         android:layout_height="match_parent"
                         android:background="@drawable/rounded_green2"
                         android:gravity="center"
+                        android:backgroundTint="@color/colorPrimaryDark"
                         android:padding="5dp"
                         android:text="@string/place_order"
                         android:textColor="@color/colorWhite"
@@ -405,6 +406,7 @@
                     android:padding="5dp"
                     android:text="@string/track_your_or"
                     android:textColor="@color/colorWhite"
+                    android:backgroundTint="@color/colorPrimaryDark"
                     android:textSize="18dp"
                     android:textStyle="bold" />
             </LinearLayout>

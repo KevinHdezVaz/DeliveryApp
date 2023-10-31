@@ -158,7 +158,7 @@ public class WalletActivity extends BaseActivity implements GetResult.MyListener
                 RestResponse restResponse = gson.fromJson(result.toString(), RestResponse.class);
                 Toast.makeText(WalletActivity.this, restResponse.getResponseMsg(), Toast.LENGTH_SHORT).show();
                 if (restResponse.getResult().equalsIgnoreCase("true")) {
-                    HomeActivity.getInstance().txtWallet.setText(sessionManager.getStringData(currncy) + restResponse.getWallet());
+                 //   HomeActivity.getInstance().txtWallet.setText(sessionManager.getStringData(currncy) + restResponse.getWallet());
                     txtWallet.setText(sessionManager.getStringData(currncy) + restResponse.getWallet());
                     edAmount.setText("");
                 }

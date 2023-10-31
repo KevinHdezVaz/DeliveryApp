@@ -66,6 +66,7 @@
                     android:drawablePadding="10dp"
                     android:hint="@string/ename"
                     android:padding="12dp"
+                    android:inputType="textPersonName"
                     android:textColor="@color/colorGrey2"
                     android:textColorHint="@color/colorGrey" />
             </LinearLayout>
@@ -84,6 +85,8 @@
                     android:drawableLeft="@drawable/ic_email"
                     android:drawablePadding="10dp"
                     android:hint="@string/email"
+                    android:inputType="textEmailAddress"
+
                     android:padding="12dp"
                     android:textColor="@color/colorGrey2"
                     android:textColorHint="@color/colorGrey" />
@@ -106,6 +109,7 @@
                         android:id="@+id/spinner"
                         android:layout_width="fill_parent"
                         android:layout_height="45dp"
+
                         android:prompt="@string/spinner_title" />
                 </LinearLayout>
 
@@ -122,6 +126,7 @@
                     android:background="@drawable/rounded_editetext"
                     android:hint="@string/mobile"
                     android:inputType="phone"
+                    android:maxLength="10"
                     android:padding="12dp"
                     android:textColor="@color/colorGrey2"
                     android:textColorHint="@color/colorGrey" />
@@ -149,6 +154,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:layout_marginTop="15dp">
 
                 <EditText
@@ -197,6 +203,7 @@
                     android:layout_gravity="center"
                     android:background="@drawable/rounded_green2"
                     android:gravity="center"
+                    android:backgroundTint="@color/colorPrimaryDark"
                     android:text="@string/sign_up"
                     android:textColor="@color/colorWhite"
                     android:textSize="18dp" />

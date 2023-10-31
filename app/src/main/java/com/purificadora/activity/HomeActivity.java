@@ -93,8 +93,7 @@ public class HomeActivity extends BaseActivity {
     @BindView(R.id.txtfirstl)
     TextView txtfirstl;
 
-    @BindView(R.id.txt_wallet)
-    TextView txtWallet;
+
     @BindView(R.id.txt_email)
     TextView txtEmail;
     @BindView(R.id.img_close)
@@ -185,14 +184,7 @@ public class HomeActivity extends BaseActivity {
         lvlMainhome.setLayoutParams(params);
     }
 
-    public void setTxtWallet(String wallet) {
-        if (sessionManager.getBooleanData(login)) {
-            txtWallet.setVisibility(View.VISIBLE);
-        } else {
-            txtWallet.setVisibility(View.GONE);
-        }
-        txtWallet.setText(sessionManager.getStringData(currncy) + wallet);
-    }
+
 
     @SuppressLint("SetTextI18n")
     private void setDrawer() {
@@ -342,7 +334,7 @@ public class HomeActivity extends BaseActivity {
     }
 
     public void titleChange() {
-        txtActiontitle.setText("Hello " + user.getName());
+        txtActiontitle.setText("Hola " + user.getName());
     }
 
 
@@ -357,7 +349,7 @@ public class HomeActivity extends BaseActivity {
             Intent shareIntent = new Intent(Intent.ACTION_SEND);
             shareIntent.setType("text/plain");
             shareIntent.putExtra(Intent.EXTRA_SUBJECT, getResources().getString(R.string.app_name));
-            String shareMessage = "\nLet me recommend you this application\n\n";
+            String shareMessage = "\nTe recomendamos esta app de ventas\n\n";
             shareMessage = shareMessage + "https://play.google.com/store/apps/details?id=" + getApplicationContext().getPackageName() + "\n\n";
             shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
             startActivity(Intent.createChooser(shareIntent, "choose one"));
@@ -504,7 +496,7 @@ public class HomeActivity extends BaseActivity {
                 txtActiontitle.setVisibility(View.VISIBLE);
                 rltNoti.setVisibility(View.GONE);
                 rltCart.setVisibility(View.VISIBLE);
-                txtActiontitle.setText("MyCart");
+                txtActiontitle.setText("Carrito");
                 fragment = new CardFragment();
                 callFragment(fragment);
                 break;
