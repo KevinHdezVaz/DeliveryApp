@@ -17,6 +17,10 @@ public class Address implements Serializable {
     private String id;
     @SerializedName("landmark")
     private String landmark;
+
+
+    @SerializedName("municpio")
+    private String municipio;
     @SerializedName("name")
     private String name;
     @SerializedName("pincode")
@@ -42,6 +46,13 @@ public class Address implements Serializable {
         this.isUpdateNeed = updateNeed;
     }
 
+    public String getMunicipio() {
+        return municipio;
+    }
+
+    public void setMunicipio(String municipio) {
+        this.municipio = municipio;
+    }
     public float getDeliveryCharge() {
         return deliveryCharge;
     }

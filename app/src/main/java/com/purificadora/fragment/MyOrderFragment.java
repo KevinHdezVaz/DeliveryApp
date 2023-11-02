@@ -149,11 +149,16 @@ public class MyOrderFragment extends Fragment implements GetResult.MyListener {
                 TextView txtTotal = view.findViewById(R.id.txt_total);
                 txtOrderid.setText(getString(R.string.orderid) +" "+ orderData.get(i).getId());
                 txtTotal.setText(sessionManager.getStringData(currncy) + orderData.get(i).getTotalamt());
-                if (orderData.get(i).getStatus().equalsIgnoreCase("completed")) {
+                if (orderData.get(i).getStatus().equalsIgnoreCase("entregado")) {
                     txtStatus.setTextColor(getResources().getColor(R.color.colorPrimary));
                 }
-                if (orderData.get(i).getStatus().equalsIgnoreCase("pending") || orderData.get(i).getStatus().equalsIgnoreCase(getResources().getString(R.string.pic_myslf))) {
+                if (orderData.get(i).getStatus().equalsIgnoreCase("procesando")) {
+                    txtStatus.setTextColor(getResources().getColor(R.color.green));
+                }
+                if (orderData.get(i).getStatus().equalsIgnoreCase("pendiente") || orderData.get(i).getStatus().equalsIgnoreCase(getResources().getString(R.string.pic_myslf))) {
                     lvlCancel.setVisibility(View.VISIBLE);
+                    txtStatus.setTextColor(getResources().getColor(R.color.yellow));
+
                 } else {
                     lvlCancel.setVisibility(View.GONE);
                 }

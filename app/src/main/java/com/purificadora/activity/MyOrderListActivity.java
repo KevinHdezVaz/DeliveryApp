@@ -108,7 +108,7 @@ public class MyOrderListActivity extends BaseActivity implements GetResult.MyLis
         requestPermissions(new String[]{Manifest.permission.CALL_PHONE}, 1);
         ButterKnife.bind(this);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("OrderList ");
+        getSupportActionBar().setTitle("Orden ");
         getSupportActionBar().setElevation(0);
         custPrograssbar=new CustPrograssbar();
         sessionManager = new SessionManager(MyOrderListActivity.this);
@@ -179,12 +179,12 @@ public class MyOrderListActivity extends BaseActivity implements GetResult.MyLis
                         lvlCouponcode.setVisibility(View.VISIBLE);
 
                     }
-                    if (myOrder.getmIsrated().equalsIgnoreCase("No") && myOrder.getStatus().equalsIgnoreCase("completed")) {
+                    if (myOrder.getmIsrated().equalsIgnoreCase("No") && myOrder.getStatus().equalsIgnoreCase("entregado")) {
                         item.setVisible(true);
                     } else {
                         item.setVisible(false);
                     }
-                    if (myOrder.getStatus().equalsIgnoreCase("processing") || myOrder.getStatus().equalsIgnoreCase(getResources().getString(R.string.pic_myslf))) {
+                    if (myOrder.getStatus().equalsIgnoreCase("procesando") || myOrder.getStatus().equalsIgnoreCase(getResources().getString(R.string.pic_myslf))) {
                         itemC.setVisible(true);
                     } else {
                         itemC.setVisible(false);
@@ -193,11 +193,11 @@ public class MyOrderListActivity extends BaseActivity implements GetResult.MyLis
                         timeView.setVisibility(View.GONE);
                     }
 
-                    if (myOrder.getStatus().equalsIgnoreCase("Pending")) {
+                    if (myOrder.getStatus().equalsIgnoreCase("pendiente")) {
                         timeView.setCurrentStateNumber(StateProgressBar.StateNumber.ONE);
-                    } else if (myOrder.getStatus().equalsIgnoreCase("processing")) {
+                    } else if (myOrder.getStatus().equalsIgnoreCase("procesando")) {
                         timeView.setCurrentStateNumber(StateProgressBar.StateNumber.TWO);
-                    } else if (myOrder.getStatus().equalsIgnoreCase("completed")) {
+                    } else if (myOrder.getStatus().equalsIgnoreCase("entregado")) {
                         timeView.setCurrentStateNumber(StateProgressBar.StateNumber.THREE);
                     } else if (myOrder.getStatus().equalsIgnoreCase("cancelled")) {
                         timeView.setVisibility(View.GONE);

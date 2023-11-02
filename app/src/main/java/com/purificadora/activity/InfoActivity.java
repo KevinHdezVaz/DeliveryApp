@@ -62,7 +62,7 @@ public class InfoActivity extends AppCompatActivity {
 
                 if (position == 0 || position == 1) {
                     btnSkip.setVisibility(View.VISIBLE);
-                    btnNext.setText("Next");
+                    btnNext.setText("Siguiente");
                 } else if (position == 2) {
                     btnSkip.setVisibility(View.GONE);
                     btnNext.setText("Iniciar");

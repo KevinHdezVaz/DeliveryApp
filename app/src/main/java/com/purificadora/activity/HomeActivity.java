@@ -13,6 +13,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.location.Location;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -465,9 +466,21 @@ public class HomeActivity extends BaseActivity {
                 break;
 
             case R.id.contect:
-                titleChange();
+                //titleChange();
 
-                startActivity(new Intent(HomeActivity.this, ContectusActivity.class));
+                String facebookPageId = "103166571279719"; // Reemplaza con el ID de tu página de Facebook
+
+                try {
+                    // Intent para abrir la aplicación de Facebook
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("fb://page/" + facebookPageId));
+                    startActivity(intent);
+                } catch (Exception e) {
+                    // Si la aplicación de Facebook no está instalada, abrir en el navegador web
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/" + facebookPageId));
+                    startActivity(intent);
+                }
+
+
                 break;
             case R.id.logout:
                 if (sessionManager.getBooleanData(login)) {

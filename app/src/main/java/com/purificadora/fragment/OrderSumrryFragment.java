@@ -456,7 +456,7 @@ public class OrderSumrryFragment extends Fragment implements GetResult.MyListene
                     } else {
                         sendorderServer();
                     }
-                } else if (payment.equalsIgnoreCase("Cash On Delivery") || payment.equalsIgnoreCase("Pickup Myself")) {
+                } else if (payment.equalsIgnoreCase("Dinero en efectivo") || payment.equalsIgnoreCase("Pickup Myself")) {
                     sendorderServer();
                 }
 

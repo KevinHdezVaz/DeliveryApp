@@ -42,7 +42,7 @@
     <string name="items">  Unidades</string>
     <string name="placedordernow">Orden colocado ahora</string>
     <string name="mimiordervalof">Valor de pedido mínimo de</string>
-    <string name="orderid">Solicitar ID:</string>
+    <string name="orderid">Orden ID:</string>
     <string name="areyousurecancel">¿Estás seguro de cancelar este pedido?</string>
     <string name="yes">Sí</string>
     <string name="no">No</string>
@@ -52,7 +52,7 @@
     <string name="hello">Hola</string>
     <string name="seemore">Ver más</string>
     <string name="address_type">Estado</string>
-    <string name="home_no">Casa no</string>
+    <string name="home_no">número</string>
     <string name="society">Colonia</string>
     <string name="area">Municipio / Alcaldia</string>
     <string name="landmark">Punto de referencia</string>
@@ -68,7 +68,7 @@
     <string name="country_code">Código de país</string>
     <string name="mobile_no">No móviles</string>
     <string name="generate_otp">Generar OTP</string>
-    <string name="home">Hogar</string>
+    <string name="home">Home</string>
     <string name="my_wallet">Mi billetera</string>
     <string name="my_orders">Mis ordenes</string>
     <string name="my_address">Mi dirección</string>
@@ -87,7 +87,7 @@
     <string name="related_products">Productos relacionados</string>
     <string name="welcome_back">¡Bienvenido de nuevo!</string>
     <string name="log_in_to_your_existing_account">Inicie sesión en su cuenta existente</string>
-    <string name="email_mobile_no">Correo electrónico - móvil no</string>
+    <string name="email_mobile_no">Correo electrónico - Núm. telefonico</string>
     <string name="forgot_password">¡Has olvidado tu contraseña!</string>
     <string name="don_t_have_an_account">¿No tienes una cuenta?</string>
     <string name="order_id">Solicitar ID:</string>

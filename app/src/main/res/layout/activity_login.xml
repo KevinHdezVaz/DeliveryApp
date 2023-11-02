@@ -64,6 +64,7 @@
                     android:drawableLeft="@drawable/ic_perm_"
                     android:drawablePadding="10dp"
                     android:hint="@string/email_mobile_no"
+
                     android:inputType="text"
                     android:padding="12dp"
                     android:textColor="@color/colorGrey2"

@@ -129,13 +129,7 @@ public class AddressActivity extends BaseActivity implements GetResult.MyListene
         mapView.getMapAsync(this);
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         saveLocationButton = findViewById(R.id.saveLocationButton);
-        saveLocationButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Lógica para guardar la ubicación actual
 
-            }
-        });
 
 
     }
@@ -181,7 +175,7 @@ public class AddressActivity extends BaseActivity implements GetResult.MyListene
             jsonObject.put("name", edUsername.getText().toString());
             jsonObject.put("hno", edHoousno.getText().toString());
             jsonObject.put("society", edSociety.getText().toString());
-            jsonObject.put("area", areaSelect);
+            jsonObject.put("area", "-");
             jsonObject.put("landmark", edLandmark.getText().toString());
             jsonObject.put("pincode", edPinno.getText().toString());
             jsonObject.put("type", edType.getText().toString());
@@ -310,7 +304,8 @@ public class AddressActivity extends BaseActivity implements GetResult.MyListene
                     // Almacena las coordenadas en las variables globales
                     savedLatitude = latitude;
                     savedLongitude = longitude;
-                  //  Toast.makeText(AddressActivity.this,""+ latitude + longitude, Toast.LENGTH_SHORT).show();
+                     //Toast.makeText(AddressActivity.this,""+ latitude + longitude, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddressActivity.this,"Perfecto, ahora pulsa el boton Guardar", Toast.LENGTH_SHORT).show();
 
                     LatLng userLocation = new LatLng(latitude, longitude);
 
