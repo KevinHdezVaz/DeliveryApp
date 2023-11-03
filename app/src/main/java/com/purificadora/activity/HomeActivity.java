@@ -130,6 +130,7 @@ public class HomeActivity extends BaseActivity {
     DatabaseHelper databaseHelper;
     SessionManager sessionManager;
     private static final int PERMISSION_REQUEST_CODE = 123; // Un código de solicitud que puedes definir
+    private static final int REQUEST_PERMISSION_NOTIFICATIONS = 1065;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -146,6 +147,7 @@ public class HomeActivity extends BaseActivity {
         setDrawer();
         checkLocationPermission();
 
+        checkRequestPermissionAndRequestNotification();
 
     }
 
@@ -167,6 +169,11 @@ public class HomeActivity extends BaseActivity {
     private void checkLocationPermission() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, PERMISSION_REQUEST_CODE);
+        }
+    }
+    private void checkRequestPermissionAndRequestNotification() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.POST_NOTIFICATIONS}, REQUEST_PERMISSION_NOTIFICATIONS);
         }
     }
 
