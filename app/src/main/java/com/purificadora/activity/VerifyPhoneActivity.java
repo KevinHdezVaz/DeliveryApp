@@ -16,13 +16,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.work.Data;
+import androidx.work.OneTimeWorkRequest;
+import androidx.work.WorkManager;
 
- import com.purificadora.MyApplication;
+import com.purificadora.MyApplication;
 import com.purificadora.R;
 import com.purificadora.model.LoginUser;
 import com.purificadora.model.RestResponse;
 import com.purificadora.model.User;
 import com.purificadora.notification.NotificationUtils;
+import com.purificadora.notification.NotificationWorker;
 import com.purificadora.retrofit.APIClient;
 import com.purificadora.retrofit.GetResult;
 import com.purificadora.utils.Common;
@@ -454,19 +458,31 @@ public class VerifyPhoneActivity extends AppCompatActivity implements GetResult.
         }
     }
 
-    private void configPushNotification(){
+
+        private void configPushNotification(){
+
+        WorkManager workManager = WorkManager.getInstance(this);
+        workManager.cancelAllWorkByTag(JOB_PERIODIC_TASK_TAG_NOTIFICATION);
+
+        String title = "Círculo andatti";
+        String message = generateRandomVerificationCode() ;
 
 
-
-            String title = "Tu codigo de verificación para la app es:";
-            String message = verificationCode ;
-
-
-                    Common.logError(TAG, "Inicio la tarea programada de la notificación");
-                    NotificationUtils notificationUtils = new NotificationUtils(this);
-                    notificationUtils.showNotificationOrder(title, message);
+        Data inputData = new Data.Builder()
+                .putString("title", title)
+                .putString("message", message)
+                .build();
 
 
+       // int minutes = currentOrder.getTimePickUp();
+
+        OneTimeWorkRequest notificationWorkRequest = new OneTimeWorkRequest.Builder(NotificationWorker.class)
+                .addTag(JOB_PERIODIC_TASK_TAG_NOTIFICATION)
+                .setInputData(inputData)
+                .setInitialDelay(4, TimeUnit.SECONDS)
+                .build();
+
+        workManager.enqueue(notificationWorkRequest);
 
     }
 
