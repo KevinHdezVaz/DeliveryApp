@@ -19575,7 +19575,7 @@ com.purificadora.model.WalletHistry:
     public java.lang.String getResponseCode()
     public java.lang.String getResponseMsg()
 com.purificadora.notification.MyFirebaseMessagingService
-com.purificadora.notification.NotificationHelper:
+com.purificadora.notification.NotificationUtils:
     private static final java.lang.String CHANNEL_ID
     public void <init>()
 com.purificadora.retrofit.APIClient:

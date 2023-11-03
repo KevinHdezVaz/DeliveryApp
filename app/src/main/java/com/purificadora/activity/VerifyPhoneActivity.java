@@ -2,6 +2,8 @@ package com.purificadora.activity;
 
 import static com.purificadora.utils.Utiles.isvarification;
 
+import static java.security.AccessController.getContext;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -15,18 +17,19 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+ import com.purificadora.MyApplication;
 import com.purificadora.R;
 import com.purificadora.model.LoginUser;
 import com.purificadora.model.RestResponse;
 import com.purificadora.model.User;
-import com.purificadora.notification.NotificationHelper;
+import com.purificadora.notification.NotificationUtils;
 import com.purificadora.retrofit.APIClient;
 import com.purificadora.retrofit.GetResult;
+import com.purificadora.utils.Common;
 import com.purificadora.utils.CustPrograssbar;
 import com.purificadora.utils.SessionManager;
 import com.purificadora.utils.Utiles;
 import com.google.android.gms.tasks.TaskExecutors;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
@@ -80,6 +83,8 @@ public class VerifyPhoneActivity extends AppCompatActivity implements GetResult.
     SessionManager sessionManager;
     User user;
     String verificationCode = generateRandomVerificationCode();
+    public static final String TAG = VerifyPhoneActivity.class.getSimpleName();
+    private static final String JOB_PERIODIC_TASK_TAG_NOTIFICATION = "io.hypertrack.android_scheduler_demo.JobPeriodicTask.JOB_PERIODIC_TASK_TAG_NOTIFICATION";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,7 +104,9 @@ public class VerifyPhoneActivity extends AppCompatActivity implements GetResult.
        // sendVerificationCode(phonecode + phonenumber);
 
 
-        NotificationHelper.displayNotification(this, "Tu código de verificación es:",verificationCode );
+    //    NotificationUtils.displayNotification(this, "Tu código de verificación es:",verificationCode );
+        configPushNotification();
+
 
 
 //        sendVerificationCodeToServer(phonecode + phonenumber);
@@ -434,12 +441,33 @@ public class VerifyPhoneActivity extends AppCompatActivity implements GetResult.
                     e.printStackTrace();
                 }
            //     sendVerificationCode(phonecode + phonenumber);
-                NotificationHelper.displayNotification(this, "Tu código de verificación es:",verificationCode );
+//                NotificationUtils.displayNotification(this, "Tu código de verificación es:",verificationCode );
+
+
+
+                configPushNotification();
+
 
                 break;
             default:
                 break;
         }
+    }
+
+    private void configPushNotification(){
+
+
+
+            String title = "Tu codigo de verificación para la app es:";
+            String message = verificationCode ;
+
+
+                    Common.logError(TAG, "Inicio la tarea programada de la notificación");
+                    NotificationUtils notificationUtils = new NotificationUtils(this);
+                    notificationUtils.showNotificationOrder(title, message);
+
+
+
     }
 
     private void createUser() {
