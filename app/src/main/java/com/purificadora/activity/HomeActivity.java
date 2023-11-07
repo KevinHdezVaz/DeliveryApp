@@ -16,7 +16,9 @@ import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.SpannableString;
 import android.text.TextWatcher;
+import android.text.style.UnderlineSpan;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -56,6 +58,8 @@ import com.purificadora.utils.CustPrograssbar;
 import com.purificadora.utils.SessionManager;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+
+import org.w3c.dom.Text;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -121,6 +125,9 @@ public class HomeActivity extends BaseActivity {
     TextView txtCountcard;
     @BindView(R.id.img_noti)
     ImageView imgNoti;
+
+    @BindView(R.id.txtCredits)
+    TextView txtCredits;
     User user;
     public static TextView txtCountcard1;
     public static HomeActivity homeActivity = null;
@@ -149,6 +156,28 @@ public class HomeActivity extends BaseActivity {
 
         checkRequestPermissionAndRequestNotification();
 
+        String textoNormal = "*App desarrollada por ";
+        String textoSubrayado = "KaveMX";
+
+        SpannableString spannableString = new SpannableString(textoNormal + textoSubrayado);
+        spannableString.setSpan(new UnderlineSpan(), textoNormal.length(), spannableString.length(), 0);
+
+        txtCredits.setText(spannableString); // Aquí asumo que textView es el TextView donde deseas mostrar el texto.
+
+txtCredits.setOnClickListener(view -> {
+    String facebookPageId = "2182902815353778"; // Reemplaza con el ID de tu página de Facebook
+
+    try {
+        // Intent para abrir la aplicación de Facebook
+        Intent intent2 = new Intent(Intent.ACTION_VIEW, Uri.parse("fb://page/" + facebookPageId));
+        startActivity(intent2);
+    } catch (Exception e) {
+        // Si la aplicación de Facebook no está instalada, abrir en el navegador web
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/" + facebookPageId));
+        startActivity(intent);
+    }
+
+});
     }
 
     @Override

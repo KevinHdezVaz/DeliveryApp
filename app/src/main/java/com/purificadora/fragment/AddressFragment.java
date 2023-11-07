@@ -5,6 +5,7 @@ import static com.purificadora.utils.Utiles.isRef;
 import static com.purificadora.utils.Utiles.isSelect;
 import static com.purificadora.utils.Utiles.seletAddress;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -140,13 +141,13 @@ public class AddressFragment extends Fragment implements GetResult.MyListener {
             return viewHolder;
         }
 
+        @SuppressLint("SetTextI18n")
         @Override
-        public void onBindViewHolder(ViewHolder holder,
-                                     int position) {
+        public void onBindViewHolder(ViewHolder holder, int position) {
             Address address = addressList.get(position);
             holder.offerSelect.setChecked(lastSelectedPosition == position);
-            holder.txtAddressful.setText(address.getHno() + "," + address.getSociety() + "," + address.getArea() + "," + address.getLandmark() + "," + address.getName());
-            holder.txtAddressname.setText("" + address.getType());
+            holder.txtAddressful.setText(address.getCalle() + "," +address.getHno()+ "," + address.getSociety() + "," + address.getLandmark());
+            holder.txtAddressname.setText("" + address.getMunicipio());
             if (!isSelect) {
                 holder.offerSelect.setVisibility(View.GONE);
             }
@@ -172,30 +173,19 @@ public class AddressFragment extends Fragment implements GetResult.MyListener {
             public ViewHolder(View view) {
                 super(view);
                 ButterKnife.bind(this, view);
-                offerSelect.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        lastSelectedPosition = getAdapterPosition();
-                        seletAddress = lastSelectedPosition;
-                        sessionManager.setAddress(addressList.get(getAdapterPosition()));
-                        getActivity().getSupportFragmentManager().popBackStack();
-                    }
+                offerSelect.setOnClickListener(v -> {
+                    lastSelectedPosition = getAdapterPosition();
+                    seletAddress = lastSelectedPosition;
+                    sessionManager.setAddress(addressList.get(getAdapterPosition()));
+                    getActivity().getSupportFragmentManager().popBackStack();
                 });
-                txtDelete.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
+                txtDelete.setOnClickListener(v -> {
 
-                        lastSelectedPosition = getAdapterPosition();
-                        positionAdd = lastSelectedPosition;
-                        deleteAddress(addressList.get(lastSelectedPosition).getId());
-                    }
+                    lastSelectedPosition = getAdapterPosition();
+                    positionAdd = lastSelectedPosition;
+                    deleteAddress(addressList.get(lastSelectedPosition).getId());
                 });
-                txtChange.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        startActivity(new Intent(getActivity(), AddressActivity.class).putExtra("MyClass", addressList.get(getAdapterPosition())));
-                    }
-                });
+                txtChange.setOnClickListener(v -> startActivity(new Intent(getActivity(), AddressActivity.class).putExtra("MyClass", addressList.get(getAdapterPosition()))));
             }
         }
     }
@@ -261,8 +251,8 @@ public class AddressFragment extends Fragment implements GetResult.MyListener {
                 if (restResponse.getResult().equalsIgnoreCase("true")) {
                     addressList.remove(positionAdd);
                     if(!addressList.isEmpty()){
-                        lvlNotfound.setVisibility(View.VISIBLE);
-                        txtNotfound.setText(R.string.addressnotf);
+                   //     lvlNotfound.setVisibility(View.VISIBLE);
+                  //      txtNotfound.setText(R.string.addressnotf);
                     }
                     adapter.notifyDataSetChanged();
                 }

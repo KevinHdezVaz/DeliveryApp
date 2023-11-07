@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorWhite"
     android:fillViewport="true"
     android:gravity="center|top"
@@ -15,11 +16,18 @@
         android:gravity="center|bottom"
         android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="130dp"
-            android:layout_height="130dp"
-            android:layout_gravity="center"
-            android:src="@drawable/redondoono" />
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            app:cardCornerRadius="20dp"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
+                android:src="@drawable/logoo" />
+        </androidx.cardview.widget.CardView>
 
         <TextView
             android:layout_width="match_parent"
@@ -65,7 +73,7 @@
                     android:drawablePadding="10dp"
                     android:hint="@string/email_mobile_no"
 
-                    android:inputType="text"
+                    android:inputType="number"
                     android:padding="12dp"
                     android:textColor="@color/colorGrey2"
                     android:textColorHint="@color/colorGrey" />
@@ -101,10 +109,9 @@
                 android:gravity="center|right"
                 android:padding="5dp"
                 android:layout_gravity="right"
-                android:visibility="gone"
-                android:textColor="@color/colorGrey1"
+                 android:textColor="@color/colorBalck"
                 android:text="@string/forgot_password"
-                android:textSize="18sp" />
+                android:textSize="13sp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"

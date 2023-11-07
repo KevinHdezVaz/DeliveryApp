@@ -3,14 +3,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorWhite"
     android:gravity="center"
     tools:context=".activity.FirstActivity">
+<androidx.cardview.widget.CardView
+    android:layout_width="wrap_content"
+    app:cardCornerRadius="20dp"
+    android:layout_height="wrap_content">
 
     <ImageView
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_gravity="center"
         android:adjustViewBounds="true"
-        android:src="@drawable/redondoono" />
+        android:src="@drawable/logoo" />
+</androidx.cardview.widget.CardView>
 </LinearLayout>

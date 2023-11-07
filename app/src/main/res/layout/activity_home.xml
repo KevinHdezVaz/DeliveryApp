@@ -246,13 +246,40 @@
                             android:textColor="@color/colorBalck"
                             android:textStyle="bold" />
 
+
+
                     </LinearLayout>
 
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="50dp" />
+                        android:layout_height="30dp" />
+
+                    <LinearLayout
+                        android:id="@+id/x"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_marginTop="30dp"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:onClick="ClickNavigation"
+                        android:orientation="horizontal"
+                        android:padding="5dp">
 
 
+
+                        <TextView
+                            android:id="@+id/txtCredits"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="3dp"
+                            android:textSize="12dp"
+                            android:text="@string/logout"
+                            android:textColor="@color/colorBalck"
+                            android:textStyle="bold" />
+
+
+
+                    </LinearLayout>
 
                 </LinearLayout>
             </LinearLayout>

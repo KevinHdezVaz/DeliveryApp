@@ -82,6 +82,9 @@ public class VerifyPhoneActivity extends AppCompatActivity implements GetResult.
     private String verificationId;
     private FirebaseAuth mAuth;
     String phonenumber;
+
+    private TextView btn_send;
+
     String phonecode;
     CustPrograssbar custPrograssbar;
     SessionManager sessionManager;
@@ -103,8 +106,15 @@ public class VerifyPhoneActivity extends AppCompatActivity implements GetResult.
             user = sessionManager.getUserDetails();
         }
         mAuth = FirebaseAuth.getInstance();
+        btn_send = findViewById(R.id.btn_send);
+
         phonenumber = getIntent().getStringExtra("phone");
         phonecode = getIntent().getStringExtra("code");
+
+        if(isvarification == 0){
+            btn_send.setText("Cambiar contraseña");
+
+        }
        // sendVerificationCode(phonecode + phonenumber);
 
 
@@ -421,9 +431,20 @@ public class VerifyPhoneActivity extends AppCompatActivity implements GetResult.
             case R.id.btn_send:
                 if (validation()) {
 
-               verifyCode();
+                    verifyCode();
                 }
+                if(isvarification == 0){
+                 Intent intent = new Intent(VerifyPhoneActivity.this, ChanegPasswordActivity.class);
+                intent.putExtra("phone", phonenumber);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                }
+
+
                 break;
+
+
+
             case R.id.btn_reenter:
                 btnReenter.setVisibility(View.GONE);
                 btnTimer.setVisibility(View.VISIBLE);
@@ -432,7 +453,7 @@ public class VerifyPhoneActivity extends AppCompatActivity implements GetResult.
                         @Override
                         public void onTick(long millisUntilFinished) {
                             long seconds = TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished);
-                            btnTimer.setText(seconds + " Secound Wait");
+                            btnTimer.setText(seconds + " segundos");
                         }
 
                         @Override
@@ -464,7 +485,7 @@ public class VerifyPhoneActivity extends AppCompatActivity implements GetResult.
         WorkManager workManager = WorkManager.getInstance(this);
         workManager.cancelAllWorkByTag(JOB_PERIODIC_TASK_TAG_NOTIFICATION);
 
-        String title = "Círculo andatti";
+        String title = "Tu codigo de verificación para la app es:";
         String message = generateRandomVerificationCode() ;
 
 
@@ -479,7 +500,7 @@ public class VerifyPhoneActivity extends AppCompatActivity implements GetResult.
         OneTimeWorkRequest notificationWorkRequest = new OneTimeWorkRequest.Builder(NotificationWorker.class)
                 .addTag(JOB_PERIODIC_TASK_TAG_NOTIFICATION)
                 .setInputData(inputData)
-                .setInitialDelay(4, TimeUnit.SECONDS)
+                .setInitialDelay(2, TimeUnit.SECONDS)
                 .build();
 
         workManager.enqueue(notificationWorkRequest);
@@ -552,6 +573,7 @@ public class VerifyPhoneActivity extends AppCompatActivity implements GetResult.
                     finish();
                 }
             }
+
         } catch (Exception e) {
             e.printStackTrace();
         }

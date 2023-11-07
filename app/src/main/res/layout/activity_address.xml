@@ -43,6 +43,16 @@
                 android:text="Veracruz"
                 android:textColor="@color/colorGrey2" />
 
+            <EditText
+                android:id="@+id/ed_direccion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/rounded_editetext"
+                 android:padding="10dp"
+android:hint="Calle"
+                android:textColor="@color/colorGrey2" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -54,7 +64,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:layout_marginRight="5dp"
-                    android:layout_weight="1.5"
+                     android:layout_weight="1.5"
                     android:background="@drawable/rounded_editetext"
                     android:hint="@string/home_no"
                       android:padding="10dp"
@@ -82,7 +92,7 @@
                 android:layout_marginTop="15dp"
                 android:background="@drawable/rounded_editetext"
                 android:hint="Municipio / Alcaldia"
-
+android:id="@+id/ed_municipio"
                  android:textColor="@color/colorGrey2" />
 
             <LinearLayout
@@ -170,8 +180,7 @@
 
                 <TextView
                     android:id="@+id/txt_save"
-                    android:enabled="false"
-                    android:layout_width="match_parent"
+                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:background="@drawable/rounded_green"

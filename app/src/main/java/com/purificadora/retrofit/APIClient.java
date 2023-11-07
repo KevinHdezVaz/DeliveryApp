@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class APIClient {
     static Retrofit retrofit = null;
-    public static String baseUrl = "https://purificadora.aftconta.mx/";
+    public static String baseUrl = "https://purificadora.saint-remi.mx/";
     public static final String APPEND_URL = "/api/";
 
     public static UserService getInterface() {

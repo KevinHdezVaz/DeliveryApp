@@ -77,12 +77,19 @@ public class AddressActivity extends BaseActivity implements GetResult.MyListene
     EditText edSociety;
     @BindView(R.id.ed_pinno)
     EditText edPinno;
+
+    @BindView(R.id.ed_municipio)
+    EditText edmunicipio;
+
+    @BindView(R.id.ed_direccion)
+    EditText edCalle;
     String areaSelect;
     List<AreaD> areaDS = new ArrayList<>();
     @BindView(R.id.spinner)
     Spinner spinner;
     User user;
     Address address;
+    Boolean pulsado = false;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
     private GoogleMap mMap;
     private Button selectAddressButton;
@@ -136,13 +143,14 @@ public class AddressActivity extends BaseActivity implements GetResult.MyListene
 
     private void setcountaint(Address address) {
         edUsername.setText("" + address.getName());
-        edType.setText("" + address.getName());
+        //edType.setText("" + address.getName());
         edHoousno.setText("" + address.getHno());
         edSociety.setText("" + address.getSociety());
         edPinno.setText("" + address.getPincode());
         edLandmark.setText("" + address.getLandmark());
-        edType.setText("" + address.getType());
-    }
+        edmunicipio.setText("" + address.getMunicipio());
+        edCalle.setText("" + address.getCalle());
+     }
 
     private void getArea() {
         JSONObject jsonObject = new JSONObject();
@@ -162,7 +170,7 @@ public class AddressActivity extends BaseActivity implements GetResult.MyListene
                 updateUser(address.getId());
             } else {
                 updateUser("0");
-            }
+             }
         }
     }
 
@@ -185,6 +193,8 @@ public class AddressActivity extends BaseActivity implements GetResult.MyListene
             // Agregar latitud y longitud a la solicitud
             jsonObject.put("latitud", txtlatitud.getText().toString());
             jsonObject.put("longitud", txtlongidtud.getText().toString());
+            jsonObject.put("municipio", edmunicipio.getText().toString());
+            jsonObject.put("calle", edCalle.getText().toString());
 
 
             JsonParser jsonParser = new JsonParser();
@@ -232,24 +242,38 @@ public class AddressActivity extends BaseActivity implements GetResult.MyListene
     }
 
     public boolean validation() {
+
         if (edUsername.getText().toString().isEmpty()) {
-            edUsername.setError(getString(R.string.ename));
+            Toast.makeText(this,"Ingrese un nombre",Toast.LENGTH_SHORT).show();
             return false;
         }
         if (edHoousno.getText().toString().isEmpty()) {
-            edHoousno.setError(getString(R.string.ehouse));
+            Toast.makeText(this,"Ingrese el número",Toast.LENGTH_SHORT).show();
             return false;
         }
         if (edSociety.getText().toString().isEmpty()) {
-            edSociety.setError(getString(R.string.esociety));
+            Toast.makeText(this,"Ingrese el campo faltante",Toast.LENGTH_SHORT).show();
             return false;
         }
         if (edLandmark.getText().toString().isEmpty()) {
-            edLandmark.setError(getString(R.string.elandmark));
+            Toast.makeText(this,"Ingrese el punto de referencia",Toast.LENGTH_SHORT).show();
             return false;
         }
+        if (edmunicipio.getText().toString().isEmpty()) {
+            Toast.makeText(this,"Ingrese el municipio",Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if (edCalle.getText().toString().isEmpty()) {
+            Toast.makeText(this,"Ingrese la calle",Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
         if (edPinno.getText().toString().isEmpty()) {
-            edPinno.setError(getString(R.string.epincode));
+            Toast.makeText(this,"Ingrese el Codigo postal",Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if(!pulsado){
+            Toast.makeText(this,"Presiona el boton gris de arriba.",Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
@@ -295,7 +319,7 @@ public class AddressActivity extends BaseActivity implements GetResult.MyListene
                 return;
             }
             mapView.setVisibility(View.VISIBLE);
-            txt_save.setEnabled(true);
+            //.setEnabled(true);
             fusedLocationClient.getLastLocation().addOnSuccessListener(AddressActivity.this, (OnSuccessListener<Location>) location -> {
                 if (location != null) {
                     double latitude = location.getLatitude();
@@ -307,6 +331,7 @@ public class AddressActivity extends BaseActivity implements GetResult.MyListene
                      //Toast.makeText(AddressActivity.this,""+ latitude + longitude, Toast.LENGTH_SHORT).show();
                     Toast.makeText(AddressActivity.this,"Perfecto, ahora pulsa el boton Guardar", Toast.LENGTH_SHORT).show();
 
+                    pulsado= true;
                     LatLng userLocation = new LatLng(latitude, longitude);
 
                     txtlongidtud.setText(""+longitude);

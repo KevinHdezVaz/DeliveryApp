@@ -22,6 +22,8 @@
     <string name="efeedback">Ingrese comentarios</string>
     <string name="giverating">Dar calificación</string>
     <string name="logout">Cerrar sesión</string>
+    <string name="creditos">Cerrar sesión</string>
+
     <string name="excelimit">Excedió el límite</string>
     <string name="emobileno">Ingrese a móvil no</string>
     <string name="notification">Notificación</string>
@@ -58,9 +60,9 @@
     <string name="landmark">Punto de referencia</string>
     <string name="pincode">Código Postal</string>
     <string name="save">Guardar</string>
-    <string name="enter_new_password">¿Ingrese nueva clave?</string>
+    <string name="enter_new_password">Ingrese nueva clave</string>
     <string name="confirm_password">confirmar Contraseña</string>
-    <string name="submit">Entregar</string>
+    <string name="submit">Aceptar</string>
     <string name="please_take_a_minute_to_write_a_review">Tómese un minuto para escribir una reseña</string>
     <string name="type_feedback">Tipo de retroalimentación ..</string>
     <string name="enter_your_phone_number">Ingrese su número telefónico</string>
@@ -89,8 +91,8 @@
     <string name="related_products">Productos relacionados</string>
     <string name="welcome_back">¡Bienvenido de nuevo!</string>
     <string name="log_in_to_your_existing_account">Inicie sesión en su cuenta existente</string>
-    <string name="email_mobile_no">Correo electrónico - Núm. telefonico</string>
-    <string name="forgot_password">¡Has olvidado tu contraseña!</string>
+    <string name="email_mobile_no">Número telefonico</string>
+    <string name="forgot_password">Olvide mi contraseña</string>
     <string name="don_t_have_an_account">¿No tienes una cuenta?</string>
     <string name="order_id">Solicitar ID:</string>
     <string name="date">Fecha:</string>
@@ -140,9 +142,9 @@
     <string name="your_door_n_to">Recibe en tu puerta \ sin salir de casa.</string>
     <string name="we_re_undergoing_a_bit_of">Estamos experimentando un poco de mantenimiento programado.</string>
     <string name="sorry_for_the_inconvenience">Lo siento por los inconvenientes ocasionados. Estaremos de copia de seguridad y ejecutando lo más rápido posible.</string>
-    <string name="select_grocery_item">Seleccionar la botella o garrafon de tu preferencia</string>
-    <string name="order_grocery_and_get_delivery_in_the_fastest_ntime">Pide tu agua y obtenen la entrega más rapida de la ciudad con Purificadora de agua Saint Remi</string>
-    <string name="order_directly_from_the_napplication">Ordenar directamente desde la app, rapido y facil!</string>
+    <string name="select_grocery_item">Selecciona la botella o garrafón de tu preferencia</string>
+    <string name="order_grocery_and_get_delivery_in_the_fastest_ntime">Pide tu agua y obtenen la entrega más rápida de la ciudad con Purificadora de agua Saint Remi</string>
+    <string name="order_directly_from_the_napplication">Ordena directamente desde la app, rápido y fácil!</string>
     <string name="fresh_amp_best_quality">Servicio a domicilio gratis </string>
     <string name="get_the_fastest_delivery">Ofrecemos calidad en todo momento</string>
     <string name="we_will_delivery">Purificadora de agua Saint Remi. \nEmpresa Mexicana conformada por jóvenes emprendedores, cuyos valores enaltecen nuestra Patria.  </string>

@@ -11,15 +11,15 @@ public class Address implements Serializable {
 
     @SerializedName("area")
     private String area;
+    @SerializedName("calle")
+    private String calle;
     @SerializedName("hno")
     private String hno;
     @SerializedName("id")
     private String id;
     @SerializedName("landmark")
     private String landmark;
-
-
-    @SerializedName("municpio")
+    @SerializedName("municipio")
     private String municipio;
     @SerializedName("name")
     private String name;
@@ -37,7 +37,13 @@ public class Address implements Serializable {
     private float deliveryCharge;
     @SerializedName("IS_UPDATE_NEED")
     private boolean isUpdateNeed;
+    public String getCalle() {
+        return calle;
+    }
 
+    public void setCalle(String calle) {
+        this.calle = calle;
+    }
     public boolean isUpdateNeed() {
         return isUpdateNeed;
     }

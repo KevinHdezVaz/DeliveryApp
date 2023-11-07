@@ -123,9 +123,10 @@
                 android:layout_marginTop="30dp"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/rounded_green2"
+                android:backgroundTint="@color/colorPrimary"
                 android:elevation="10dp"
                 android:gravity="center"
-                android:text="@string/generate_otp"
+                android:text="Continuar"
                 android:textColor="@color/colorWhite" />
             <View
                 android:layout_width="match_parent"
