@@ -115,15 +115,15 @@ public class VerifyPhoneActivity extends AppCompatActivity implements GetResult.
             btn_send.setText("Cambiar contraseña");
 
         }
-       // sendVerificationCode(phonecode + phonenumber);
+     //  sendVerificationCode(phonecode + phonenumber);
 
 
     //    NotificationUtils.displayNotification(this, "Tu código de verificación es:",verificationCode );
-        configPushNotification();
+    //    configPushNotification();
 
 
 
-//        sendVerificationCodeToServer(phonecode + phonenumber);
+        sendVerificationCodeToServer(phonecode + phonenumber);
 
 
         edOtp1.addTextChangedListener(new TextWatcher() {
@@ -338,7 +338,7 @@ public class VerifyPhoneActivity extends AppCompatActivity implements GetResult.
     private void sendVerificationCodeToServer(final String recipientNumber) {
         OkHttpClient client = new OkHttpClient();
 
-        String url = "https://purificadora.aftconta.mx/otpverificacion.php"; // Reemplaza con tu URL
+        String url = "https://purificadora.saint-remi.mx/otpverificacion.php"; // Reemplaza con tu URL
 
         RequestBody requestBody = new FormBody.Builder()
                 .add("recipientNumber", recipientNumber) // Envía el código OTP al servidor
@@ -350,10 +350,7 @@ public class VerifyPhoneActivity extends AppCompatActivity implements GetResult.
                 .post(requestBody)
                 .build();
 
-
-
-
-        // Realiza la solicitud en un hilo en segundo plano
+          // Realiza la solicitud en un hilo en segundo plano
         new Thread(() -> {
             try {
                 Response response = client.newCall(request).execute();
@@ -375,7 +372,7 @@ public class VerifyPhoneActivity extends AppCompatActivity implements GetResult.
 
 
             runOnUiThread(() -> {
-                Toast.makeText(VerifyPhoneActivity.this, "Código OTP verificado con éxito", Toast.LENGTH_SHORT).show();
+             //   Toast.makeText(VerifyPhoneActivity.this, "Código OTP verificado con éxito", Toast.LENGTH_SHORT).show();
 
                 // Aquí puedes realizar cualquier otra acción necesaria, como navegar a la siguiente actividad.
             });
@@ -383,7 +380,7 @@ public class VerifyPhoneActivity extends AppCompatActivity implements GetResult.
 
 
             runOnUiThread(() -> {
-                Toast.makeText(VerifyPhoneActivity.this, "No se pudo verificar el código OTP. Inténtalo de nuevo.", Toast.LENGTH_SHORT).show();
+           //     Toast.makeText(VerifyPhoneActivity.this, "No se pudo verificar el código OTP. Inténtalo de nuevo.", Toast.LENGTH_SHORT).show();
 
                 // Si deseas, puedes tomar medidas adicionales, como permitir que el usuario reintente la verificación.
             });
@@ -465,12 +462,13 @@ public class VerifyPhoneActivity extends AppCompatActivity implements GetResult.
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-           //     sendVerificationCode(phonecode + phonenumber);
+               // sendVerificationCode(phonecode + phonenumber);
 //                NotificationUtils.displayNotification(this, "Tu código de verificación es:",verificationCode );
+                sendVerificationCodeToServer(phonecode + phonenumber);
 
 
 
-                configPushNotification();
+             //   configPushNotification();
 
 
                 break;

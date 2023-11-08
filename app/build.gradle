@@ -14,8 +14,8 @@ android {
         applicationId "com.purificadora"
         minSdkVersion 21
         targetSdkVersion 33
-        versionCode 4
-        versionName "1.111"
+        versionCode 7
+        versionName "1.111567"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         manifestPlaceholders = [
                 onesignal_app_id               : '32f9691d-5118-4034-a0e0-afc82cf68498',

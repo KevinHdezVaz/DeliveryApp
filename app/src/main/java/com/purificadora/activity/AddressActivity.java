@@ -1,11 +1,11 @@
 package com.purificadora.activity;
 
 import static com.purificadora.activity.HomeActivity.custPrograssbar;
+import static com.purificadora.utils.SessionManager.login;
 import static com.purificadora.utils.Utiles.isRef;
+import static com.purificadora.utils.Utiles.isSelect;
 
 import android.Manifest;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -25,6 +25,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.view.GravityCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -38,6 +42,8 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.purificadora.R;
+import com.purificadora.fragment.AddressFragment;
+import com.purificadora.fragment.HomeFragment;
 import com.purificadora.model.Address;
 import com.purificadora.model.Area;
 import com.purificadora.model.AreaD;
@@ -75,6 +81,7 @@ public class AddressActivity extends BaseActivity implements GetResult.MyListene
     EditText edHoousno;
     @BindView(R.id.ed_society)
     EditText edSociety;
+
     @BindView(R.id.ed_pinno)
     EditText edPinno;
 
@@ -127,6 +134,9 @@ public class AddressActivity extends BaseActivity implements GetResult.MyListene
         if (address != null)
             setcountaint(address);
 
+
+
+
         mapView = findViewById(R.id.map_view);
         txt_save = findViewById(R.id.txt_save);
         txtlatitud = findViewById(R.id.txtlatitud);
@@ -168,6 +178,8 @@ public class AddressActivity extends BaseActivity implements GetResult.MyListene
 
             if (address != null) {
                 updateUser(address.getId());
+
+
             } else {
                 updateUser("0");
              }
@@ -202,44 +214,55 @@ public class AddressActivity extends BaseActivity implements GetResult.MyListene
             GetResult getResult = new GetResult();
             getResult.setMyListener(this);
             getResult.callForLogin(call, "1");
+
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
 
+
     @Override
     public void callback(JsonObject result, String callNo) {
         try {
-            if (callNo.equalsIgnoreCase("1")) {
-                Gson gson = new Gson();
-                UpdateAddress response = gson.fromJson(result.toString(), UpdateAddress.class);
-                Toast.makeText(AddressActivity.this, "" + response.getResponseMsg(), Toast.LENGTH_LONG).show();
-                if (response.getResult().equals("true")) {
-                    sessionManager.setAddress(response.getAddress());
-                    isRef = true;
-                    finish();
-                }
-            } else if (callNo.equalsIgnoreCase("2")) {
-                Gson gson = new Gson();
-                Area area = gson.fromJson(result.toString(), Area.class);
-                areaDS = area.getData();
-                List<String> arrayList = new ArrayList<>();
-                for (int i = 0; i < areaDS.size(); i++) {
-                    if (areaDS.get(i).getStatus().equalsIgnoreCase("1")) {
-                        arrayList.add(areaDS.get(i).getName());
+            if (result != null) {
+                if (callNo.equalsIgnoreCase("1")) {
+                    Gson gson = new Gson();
+                    UpdateAddress response = gson.fromJson(result.toString(), UpdateAddress.class);
+                    Toast.makeText(AddressActivity.this, "" + response.getResponseMsg(), Toast.LENGTH_LONG).show();
+                    if (response.getResult().equals("true")) {
+                        sessionManager.setAddress(response.getAddress());
+                        isRef = true;
+                        finish();
                     }
+                } else if (callNo.equalsIgnoreCase("2")) {
+                    Gson gson = new Gson();
+                    Area area = gson.fromJson(result.toString(), Area.class);
+                    areaDS = area.getData();
+                    List<String> arrayList = new ArrayList<>();
+                    for (int i = 0; i < areaDS.size(); i++) {
+                        if (areaDS.get(i).getStatus().equalsIgnoreCase("1")) {
+                            arrayList.add(areaDS.get(i).getName());
+                        }
+                    }
+                    ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, arrayList);
+                    dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spinner.setAdapter(dataAdapter);
+                    int spinnerPosition = dataAdapter.getPosition(address.getArea());
+                    spinner.setSelection(spinnerPosition);
                 }
-                ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, arrayList);
-                dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                spinner.setAdapter(dataAdapter);
-                int spinnerPosition = dataAdapter.getPosition(address.getArea());
-                spinner.setSelection(spinnerPosition);
+            } else {
+ /**
+  *
+  * el error de esto es que nio esta mandando los datos
+  * a la base de datos si,
+  * */
             }
         } catch (Exception e) {
-
             e.printStackTrace();
         }
     }
+
 
     public boolean validation() {
 
@@ -331,6 +354,7 @@ public class AddressActivity extends BaseActivity implements GetResult.MyListene
                      //Toast.makeText(AddressActivity.this,""+ latitude + longitude, Toast.LENGTH_SHORT).show();
                     Toast.makeText(AddressActivity.this,"Perfecto, ahora pulsa el boton Guardar", Toast.LENGTH_SHORT).show();
 
+                    saveLocationButton.setVisibility(View.GONE);
                     pulsado= true;
                     LatLng userLocation = new LatLng(latitude, longitude);
 
