@@ -20692,7 +20692,6 @@ com.purificadora.fragment.SubCategoryFragment:
     public void onLongClickItem(android.view.View,int)
 com.purificadora.model.Address:
     public java.lang.String getStatus()
-    public java.lang.String getType()
     public java.lang.String getUid()
     public void setArea(java.lang.String)
     public void setCalle(java.lang.String)

@@ -153,13 +153,12 @@ public class AddressActivity extends BaseActivity implements GetResult.MyListene
 
     private void setcountaint(Address address) {
         edUsername.setText("" + address.getName());
-        //edType.setText("" + address.getName());
+        edType.setText("" + address.getName());
         edHoousno.setText("" + address.getHno());
         edSociety.setText("" + address.getSociety());
         edPinno.setText("" + address.getPincode());
         edLandmark.setText("" + address.getLandmark());
-        edmunicipio.setText("" + address.getMunicipio());
-        edCalle.setText("" + address.getCalle());
+        edType.setText("" + address.getType());
      }
 
     private void getArea() {
@@ -225,44 +224,36 @@ public class AddressActivity extends BaseActivity implements GetResult.MyListene
     @Override
     public void callback(JsonObject result, String callNo) {
         try {
-            if (result != null) {
-                if (callNo.equalsIgnoreCase("1")) {
-                    Gson gson = new Gson();
-                    UpdateAddress response = gson.fromJson(result.toString(), UpdateAddress.class);
-                    Toast.makeText(AddressActivity.this, "" + response.getResponseMsg(), Toast.LENGTH_LONG).show();
-                    if (response.getResult().equals("true")) {
-                        sessionManager.setAddress(response.getAddress());
-                        isRef = true;
-                        finish();
-                    }
-                } else if (callNo.equalsIgnoreCase("2")) {
-                    Gson gson = new Gson();
-                    Area area = gson.fromJson(result.toString(), Area.class);
-                    areaDS = area.getData();
-                    List<String> arrayList = new ArrayList<>();
-                    for (int i = 0; i < areaDS.size(); i++) {
-                        if (areaDS.get(i).getStatus().equalsIgnoreCase("1")) {
-                            arrayList.add(areaDS.get(i).getName());
-                        }
-                    }
-                    ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, arrayList);
-                    dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    spinner.setAdapter(dataAdapter);
-                    int spinnerPosition = dataAdapter.getPosition(address.getArea());
-                    spinner.setSelection(spinnerPosition);
+            if (callNo.equalsIgnoreCase("1")) {
+                Gson gson = new Gson();
+                UpdateAddress response = gson.fromJson(result.toString(), UpdateAddress.class);
+                Toast.makeText(AddressActivity.this, "" + response.getResponseMsg(), Toast.LENGTH_LONG).show();
+                if (response.getResult().equals("true")) {
+                    sessionManager.setAddress(response.getAddress());
+                    isRef = true;
+                    finish();
                 }
-            } else {
- /**
-  *
-  * el error de esto es que nio esta mandando los datos
-  * a la base de datos si,
-  * */
+            } else if (callNo.equalsIgnoreCase("2")) {
+                Gson gson = new Gson();
+                Area area = gson.fromJson(result.toString(), Area.class);
+                areaDS = area.getData();
+                List<String> arrayList = new ArrayList<>();
+                for (int i = 0; i < areaDS.size(); i++) {
+                    if (areaDS.get(i).getStatus().equalsIgnoreCase("1")) {
+                        arrayList.add(areaDS.get(i).getName());
+                    }
+                }
+                ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, arrayList);
+                dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spinner.setAdapter(dataAdapter);
+                int spinnerPosition = dataAdapter.getPosition(address.getArea());
+                spinner.setSelection(spinnerPosition);
             }
         } catch (Exception e) {
+
             e.printStackTrace();
         }
     }
-
 
     public boolean validation() {
 
